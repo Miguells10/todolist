@@ -1,5 +1,6 @@
 package br.com.miguellucas.todolist.task;
 
+import br.com.miguellucas.todolist.utils.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,6 +44,17 @@ public class TaskController {
         var idUser = request.getAttribute("idUser");
         var tasks = this.taskRepository.findByIdUser((UUID) idUser);
         return tasks;
+    }
+
+    @PutMapping("/{id}")
+    public TaskModel update(@RequestBody TaskModel taskModel, HttpServletRequest request, @PathVariable UUID id){
+        var idUser = request.getAttribute("idUser");
+
+        var task = this.taskRepository.findById(id).orElse(null);
+        Utils.conpyNonNUllProperties(taskModel, task);
+
+        return this.taskRepository.save(task);
+
     }
 
 

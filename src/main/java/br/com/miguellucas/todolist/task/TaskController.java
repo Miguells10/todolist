@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @RestController
@@ -20,10 +21,17 @@ public class TaskController {
     private ITaskRepository taskRepository;
     @PostMapping("/")
     public ResponseEntity createTask(@RequestBody TaskModel taskModel, HttpServletRequest request){
-
-        System.out.println("Chegou no controller: ");
         var idUser = request.getAttribute("idUser");
         taskModel.setIdUser((UUID) idUser);
+
+        var currentDate = LocalDateTime.now();
+        if (currentDate.isAfter(taskModel.getStartAt()) || currentDate.isAfter(taskModel.getEndAt())){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A data de inicio/termino deve ser maior que a data atual");
+        }
+
+        if (taskModel.getStartAt().isAfter(taskModel.getEndAt())){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("A data de inicio deve ser menor que a data de termino");
+        }
 
         if (taskModel.getTitle().length() > 50){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error 500. Titulo muito grande");

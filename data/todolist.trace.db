@@ -1,0 +1,12 @@
+2025-06-01 23:09:23.959029-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TB_USERS TB_TASKS [*]TB_USERS"; SQL statement:
+SELECT * FROM TB_USERS TB_TASKS TB_USERS [42000-232]
+2025-06-01 23:09:40.138023-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TB_USERS TB_TASKS [*]TB_USERS"; SQL statement:
+SELECT * FROM TB_USERS TB_TASKS TB_USERS [42000-232]
+2025-06-01 23:09:41.902376-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TB_USERS TB_TASKS [*]TB_USERS TB_USERS"; SQL statement:
+SELECT * FROM TB_USERS TB_TASKS TB_USERS TB_USERS [42000-232]
+2025-06-01 23:09:42.568657-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TB_USERS TB_TASKS [*]TB_USERS TB_USERS"; SQL statement:
+SELECT * FROM TB_USERS TB_TASKS TB_USERS TB_USERS [42000-232]
